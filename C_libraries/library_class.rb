@@ -16,6 +16,8 @@
 # Create a method that takes in a book title and adds it to our book list (add a new hash for the book with the student name and date being left as empty strings)
 # Create a method that changes the rental details of a book by taking in the title of the book, the student renting it and the date it's due to be returned.
 
+# If time, refactor to initialize new Library instances with an empty book array (no arguments needed), then add books - probably more realistic example for later on
+
 class Library
 
   def initialize(books)
