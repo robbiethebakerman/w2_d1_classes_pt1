@@ -42,6 +42,17 @@ class Library
     return nil
   end
 
+#################
+
+# REFACTORED
+
+  def get_rental_details(title)
+    found_book = get_book_info(title)
+    return found_book[:rental_details]
+  end
+
+##################
+
   def add_book(title)
     new_book = {
       title: title,
@@ -61,6 +72,13 @@ class Library
         updated_details[:date] = date
       end
     end
+  end
+
+  def update_rental(title, student, date)
+    book_to_update = get_book_info(title)
+    book_to_update[:rental_details][:student_name] = student
+    book_to_update[:rental_details][:date] = date
+    return book_to_update[:rental_details]
   end
 
 end

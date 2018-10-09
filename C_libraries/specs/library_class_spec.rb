@@ -43,6 +43,10 @@ class TestLibrary < MiniTest::Test
     assert_equal(@books1[0][:rental_details], @library1.get_book_rental_details('lord_of_the_rings'))
   end
 
+  def test_get_rental_details__book_found
+    assert_equal(@books1[0][:rental_details], @library1.get_rental_details('lord_of_the_rings'))
+  end
+
   def test_get_book_rental_details__book_not_found
     assert_nil(@library1.get_book_rental_details('bridget_jones'))
   end
@@ -57,6 +61,21 @@ class TestLibrary < MiniTest::Test
     @library1.update_rental_details('catch_22', 'Robbie', '12/12/18')
     assert_equal('Robbie', @library1.get_books[1][:rental_details][:student_name])
     assert_equal('12/12/18', @library1.get_books[1][:rental_details][:date])
+  end
+
+  def test_update_rental
+    @library1.update_rental_details('catch_22', 'Robbie', '12/12/18')
+    assert_equal('Robbie', @library1.get_books[1][:rental_details][:student_name])
+    assert_equal('12/12/18', @library1.get_books[1][:rental_details][:date])
+  end
+
+  def test_update_rental__return
+    new_details = {
+      student_name: 'Robbie',
+      date: '12/12/18'
+    }
+    result = @library1.update_rental('catch_22', 'Robbie', '12/12/18')
+    assert_equal(result, new_details)
   end
 
 end
